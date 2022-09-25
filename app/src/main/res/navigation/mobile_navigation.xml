@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/dashBoardFragment">
+
+    <fragment
+        android:id="@+id/usersFragment"
+        android:name="com.soul.crm.presentation.users.UsersFragment"
+        android:label="Users"
+        tools:layout="@layout/fragment_users" />
+    <fragment
+        android:id="@+id/attendanceFragment"
+        android:name="com.soul.crm.presentation.attendance.AttendanceFragment"
+        android:label="Attendance"
+        tools:layout="@layout/fragment_attendance" />
+    <fragment
+        android:id="@+id/coursesFragment"
+        android:name="com.soul.crm.presentation.courses.CoursesFragment"
+        android:label="Courses"
+        tools:layout="@layout/fragment_courses" />
+    <fragment
+        android:id="@+id/dashBoardFragment"
+        android:name="com.soul.crm.presentation.dashboard.DashBoardFragment"
+        android:label="DashBoard"
+        tools:layout="@layout/fragment_dash_board" />
+    <fragment
+        android:id="@+id/groupsFragment"
+        android:name="com.soul.crm.presentation.groups.GroupsFragment"
+        android:label="Groups"
+        tools:layout="@layout/fragment_groups" />
+    <fragment
+        android:id="@+id/paymentFragment"
+        android:name="com.soul.crm.presentation.payment.PaymentFragment"
+        android:label="Payment"
+        tools:layout="@layout/fragment_payment" />
+    <fragment
+        android:id="@+id/scheduleFragment"
+        android:name="com.soul.crm.presentation.schedule.ScheduleFragment"
+        android:label="Schedule"
+        tools:layout="@layout/fragment_schedule" />
+    <fragment
+        android:id="@+id/studentsFragment"
+        android:name="com.soul.crm.presentation.students.StudentsFragment"
+        android:label="Students"
+        tools:layout="@layout/fragment_students" />
+    <fragment
+        android:id="@+id/teachersFragment"
+        android:name="com.soul.crm.presentation.teachers.TeachersFragment"
+        android:label="Teachers"
+        tools:layout="@layout/fragment_teachers" />
+</navigation>
