@@ -20,15 +20,15 @@
 
         <item android:id="@+id/teachersFragment"
             android:title="@string/teachers"
-            android:icon="@drawable/pen"/>
+            android:icon="@drawable/teacher"/>
 
         <item android:id="@+id/studentsFragment"
             android:title="@string/students"
-            android:icon="@drawable/pen" />
+            android:icon="@drawable/graduated" />
 
         <item android:id="@+id/usersFragment"
             android:title="@string/users"
-            android:icon="@drawable/pen"/>
+            android:icon="@drawable/ic_users"/>
 
         <item android:id="@+id/attendanceFragment"
             android:title="@string/attendance"

@@ -11,12 +11,12 @@ interface ApiService {
         @Query("page") page: Int,
     ): Response<PeoplePagination>
 
-    @GET("user")
+    @GET("student")
     suspend fun getStudents(
         @Query("page") page: Int,
     ): Response<PeoplePagination>
 
-    @GET("user")
+    @GET("teacher")
     suspend fun getTeachers(
         @Query("page") page: Int,
     ): Response<PeoplePagination>

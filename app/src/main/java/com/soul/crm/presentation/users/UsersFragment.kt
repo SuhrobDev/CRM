@@ -1,34 +1,59 @@
 package com.soul.crm.presentation.users
 
-import androidx.lifecycle.ViewModelProvider
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import com.soul.crm.R
+import android.widget.Toast
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.whenStarted
+import com.soul.crm.data.base.BaseNetworkResult
+import com.soul.crm.databinding.FragmentUsersBinding
+import com.soul.crm.presentation.adapters.peoples.TableViewAdapter
+import com.soul.crm.presentation.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class UsersFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = UsersFragment()
+class UsersFragment : BaseFragment<FragmentUsersBinding>(FragmentUsersBinding::inflate) {
+    private val viewModel: UsersViewModel by viewModels()
+    private val adapter by lazy {
+        TableViewAdapter()
     }
 
-    private lateinit var viewModel: UsersViewModel
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_users, container, false)
+    override fun onViewCreate() {
+        setUp()
+        observe()
+        send()
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(UsersViewModel::class.java)
-        // TODO: Use the ViewModel
+    private fun setUp() {
+        binding.list.adapter = adapter
+    }
+
+    private fun observe() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.whenStarted {
+                viewModel.user.collect {
+                    when (it) {
+                        is BaseNetworkResult.Success -> {
+                            it.data?.let { detail ->
+                                adapter.setList(detail.results)
+                            }
+                        }
+                        is BaseNetworkResult.Error -> {
+                            Toast.makeText(
+                                requireContext(),
+                                it.message.toString(),
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                        is BaseNetworkResult.Loading -> {}
+                    }
+                }
+            }
+        }
+    }
+
+    private fun send() {
+        viewModel.getUserList(page = 1)
     }
 
 }
