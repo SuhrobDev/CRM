@@ -33,9 +33,9 @@ class TablePaymentAdapter : RecyclerView.Adapter<TablePaymentAdapter.RowViewHold
         @SuppressLint("SetTextI18n")
         fun bind(model: PaymentResult) {
             binding.apply {
-                amount.text = model.payed_amount
-                date.text = model.payment_date
-                balance.text = model.balance
+                amount.text = model.value
+                date.text = model.date
+                balance.text = model.user_balance
                 name.text = model.full_name
             }
         }
