@@ -29,6 +29,7 @@ class DrawerActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setSupportActionBar(binding.appBarDrawer.toolbar)
+//        supportActionBar?.setIcon(R.drawable.menu_icon_white)
 
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView

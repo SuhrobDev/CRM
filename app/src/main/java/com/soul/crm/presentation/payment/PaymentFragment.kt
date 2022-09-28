@@ -1,34 +1,59 @@
 package com.soul.crm.presentation.payment
 
-import androidx.lifecycle.ViewModelProvider
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import com.soul.crm.R
+import android.widget.Toast
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.whenStarted
+import com.soul.crm.data.base.BaseNetworkResult
+import com.soul.crm.databinding.FragmentPaymentBinding
+import com.soul.crm.presentation.adapters.payment.TablePaymentAdapter
+import com.soul.crm.presentation.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class PaymentFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = PaymentFragment()
+class PaymentFragment : BaseFragment<FragmentPaymentBinding>(FragmentPaymentBinding::inflate) {
+    private val viewModel: PaymentViewModel by viewModels()
+    private val adapter by lazy {
+        TablePaymentAdapter()
     }
 
-    private lateinit var viewModel: PaymentViewModel
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_payment, container, false)
+    override fun onViewCreate() {
+        setUp()
+        observe()
+        send()
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(PaymentViewModel::class.java)
-        // TODO: Use the ViewModel
+    private fun setUp() {
+        binding.list.adapter = adapter
+    }
+
+    private fun observe() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.whenStarted {
+                viewModel.payment.collect {
+                    when (it) {
+                        is BaseNetworkResult.Success -> {
+                            it.data?.let { detail ->
+                                adapter.setList(detail.results)
+                            }
+                        }
+                        is BaseNetworkResult.Error -> {
+                            Toast.makeText(
+                                requireContext(),
+                                it.message.toString(),
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                        is BaseNetworkResult.Loading -> {}
+                    }
+                }
+            }
+        }
+    }
+
+    private fun send() {
+        viewModel.getPaymentList(page = 1)
     }
 
 }

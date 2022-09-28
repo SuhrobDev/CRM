@@ -79,7 +79,7 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/phoneNumber"
+                    android:id="@+id/balance"
                     android:layout_width="220dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="top"
@@ -90,7 +90,7 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/group"
+                    android:id="@+id/date"
                     android:layout_width="200dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="top"
@@ -101,7 +101,7 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/teacher"
+                    android:id="@+id/amount"
                     android:layout_width="200dp"
                     android:textStyle="bold"
                     android:textColor="@color/black"

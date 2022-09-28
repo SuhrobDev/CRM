@@ -22,4 +22,7 @@
     <string name="menu_slideshow">Slideshow</string>
     <string name="name">Name</string>
     <string name="phone_number">Phone Number</string>
+    <string name="payment_date">Payment date</string>
+    <string name="balance">Balance</string>
+    <string name="payed">Payed</string>
 </resources>
