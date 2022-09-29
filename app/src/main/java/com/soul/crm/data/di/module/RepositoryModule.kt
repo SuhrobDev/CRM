@@ -1,10 +1,12 @@
 package com.soul.crm.data.di.module
 
 import com.soul.crm.data.remote.ApiService
+import com.soul.crm.data.repo.course.CourseRepoImpl
 import com.soul.crm.data.repo.payment.PaymentRepoImpl
 import com.soul.crm.data.repo.student.StudentRepoImpl
 import com.soul.crm.data.repo.teacher.TeacherRepoImpl
 import com.soul.crm.data.repo.user.UserRepoImpl
+import com.soul.crm.domain.course.repo.CourseRepo
 import com.soul.crm.domain.payment.repo.PaymentRepo
 import com.soul.crm.domain.student.repo.StudentRepo
 import com.soul.crm.domain.teacher.repo.TeacherRepo
@@ -36,5 +38,10 @@ object RepositoryModule {
     @Provides
     fun providePaymentRepository(mainService: ApiService): PaymentRepo {
         return PaymentRepoImpl(mainService)
+    }
+
+    @Provides
+    fun provideCourseRepository(mainService: ApiService): CourseRepo {
+        return CourseRepoImpl(mainService)
     }
 }

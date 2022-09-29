@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.soul.crm.data.base.BaseNetworkResult
 import com.soul.crm.data.remote.models.response.payment.PaymentPagination
 import com.soul.crm.domain.payment.use_case.PaymentUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.launchIn
@@ -12,6 +13,7 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class PaymentViewModel @Inject constructor(private val paymentUseCase: PaymentUseCase) : ViewModel() {
     private val _payment = MutableSharedFlow<BaseNetworkResult<PaymentPagination>>()
     val payment = _payment.asSharedFlow()

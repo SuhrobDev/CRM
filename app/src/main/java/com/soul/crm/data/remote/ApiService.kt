@@ -1,5 +1,6 @@
 package com.soul.crm.data.remote
 
+import com.soul.crm.data.remote.models.response.course.CoursePagination
 import com.soul.crm.data.remote.models.response.payment.PaymentPagination
 import com.soul.crm.data.remote.models.response.user.PeoplePagination
 import retrofit2.Response
@@ -24,7 +25,7 @@ interface ApiService {
     @GET("course")
     suspend fun getCourse(
         @Query("page") page: Int,
-    ): Response<PeoplePagination>
+    ): Response<CoursePagination>
 
     //LESSON
     @GET("lesson")
