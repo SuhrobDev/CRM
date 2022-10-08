@@ -33,5 +33,4 @@ abstract class BaseFragment<VB : ViewBinding>(
     }
 
     abstract fun onViewCreate()
-
 }

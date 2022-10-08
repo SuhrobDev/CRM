@@ -3,9 +3,9 @@ package com.soul.crm.data.di.module
 import androidx.viewbinding.BuildConfig
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.soul.crm.data.remote.ApiService
 import com.soul.crm.utils.Constants
+import com.soul.crm.utils.SharedPref
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,17 +14,29 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
     @Provides
-    fun provideRetrofit(httpLoggingInterceptor: HttpLoggingInterceptor): Retrofit {
+    fun provideRetrofit(httpLoggingInterceptor: HttpLoggingInterceptor,sharedPref: SharedPref): Retrofit {
         return Retrofit.Builder().apply {
             baseUrl(Constants.BASE_URL)
-            client(OkHttpClient.Builder().addNetworkInterceptor(httpLoggingInterceptor).build())
-                .addCallAdapterFactory(CoroutineCallAdapterFactory())
+            client(OkHttpClient.Builder().addNetworkInterceptor(httpLoggingInterceptor)
+                .connectTimeout(60, TimeUnit.SECONDS)
+                .readTimeout(60, TimeUnit.SECONDS)
+                .writeTimeout(60, TimeUnit.SECONDS)
+                .addInterceptor { chain ->
+                    val request = chain.request()
+                    val newRequest = if (sharedPref.getToken().isNullOrEmpty())
+                        request.newBuilder()
+                    else request.newBuilder()
+                        .header("Authorization", "Bearer ${sharedPref.getToken()}")
+                    chain.proceed(newRequest.build())
+                }
+                .build())
             addConverterFactory(GsonConverterFactory.create())
         }.build()
     }

@@ -37,5 +37,4 @@ class PaymentViewModel @Inject constructor(private val paymentUseCase: PaymentUs
             }.launchIn(viewModelScope)
         }
     }
-
 }

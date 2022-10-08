@@ -1,5 +1,6 @@
 package com.soul.crm.presentation.teachers
 
+import android.app.Activity
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -8,6 +9,7 @@ import com.soul.crm.data.base.BaseNetworkResult
 import com.soul.crm.databinding.FragmentTeachersBinding
 import com.soul.crm.presentation.adapters.peoples.TableViewAdapter
 import com.soul.crm.presentation.base.BaseFragment
+import com.soul.crm.presentation.main_activity.DrawerActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -15,7 +17,7 @@ import kotlinx.coroutines.launch
 class TeachersFragment : BaseFragment<FragmentTeachersBinding>(FragmentTeachersBinding::inflate) {
     private val viewModel: TeachersViewModel by viewModels()
     private val adapter by lazy {
-        TableViewAdapter()
+        activity?.let { TableViewAdapter(it) }
     }
 
     override fun onViewCreate() {
@@ -35,7 +37,7 @@ class TeachersFragment : BaseFragment<FragmentTeachersBinding>(FragmentTeachersB
                     when (it) {
                         is BaseNetworkResult.Success -> {
                             it.data?.let { detail ->
-                                adapter.setList(detail.results)
+                                adapter?.setList(detail.results)
                             }
                         }
                         is BaseNetworkResult.Error -> {

@@ -3,8 +3,9 @@ package com.soul.crm.utils
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
+import javax.inject.Inject
 
-class SharedPref(context: Context) {
+class SharedPref (context: Context) {
 
     private var preferences: SharedPreferences =
         context.getSharedPreferences("APP_PREFS_NAME", MODE_PRIVATE)

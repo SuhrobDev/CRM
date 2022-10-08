@@ -1,10 +1,14 @@
 package com.soul.crm.data.remote
 
+import com.soul.crm.data.remote.models.request.sign_up.SignUpRequest
 import com.soul.crm.data.remote.models.response.course.CoursePagination
 import com.soul.crm.data.remote.models.response.payment.PaymentPagination
+import com.soul.crm.data.remote.models.response.sign_up.SignUpResponse
 import com.soul.crm.data.remote.models.response.user.PeoplePagination
 import retrofit2.Response
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Query
 
 interface ApiService {
@@ -51,7 +55,8 @@ interface ApiService {
         @Query("page") page: Int,
     ): Response<PaymentPagination>
 
-    //STUDENTS
+    /**         STUDENTS        */
+
     @GET("student")
     suspend fun getStudents(
         @Query("page") page: Int,
@@ -67,7 +72,8 @@ interface ApiService {
         @Query("page") page: Int,
     ): Response<PeoplePagination>
 
-    //TEACHERS
+    /**         TEACHERS        */
+
     @GET("teacher")
     suspend fun getTeachers(
         @Query("page") page: Int,
@@ -94,4 +100,9 @@ interface ApiService {
         @Query("page") page: Int,
     ): Response<PeoplePagination>
 
+    /**         Sign Up         */
+    @POST("register/")
+    suspend fun signUp(
+        @Body signUpRequest: SignUpRequest,
+    ): Response<SignUpResponse>
 }

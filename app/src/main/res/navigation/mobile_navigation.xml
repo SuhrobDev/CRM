@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/dashBoardFragment">
+    app:startDestination="@+id/signUpFragment">
 
     <fragment
         android:id="@+id/usersFragment"
@@ -50,4 +50,9 @@
         android:name="com.soul.crm.presentation.teachers.TeachersFragment"
         android:label="Teachers"
         tools:layout="@layout/fragment_teachers" />
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.soul.crm.presentation.sign_in.SignUpFragment"
+        android:label="fragment_sign_up"
+        tools:layout="@layout/fragment_sign_up" />
 </navigation>

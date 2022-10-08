@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 class UsersFragment : BaseFragment<FragmentUsersBinding>(FragmentUsersBinding::inflate) {
     private val viewModel: UsersViewModel by viewModels()
     private val adapter by lazy {
-        TableViewAdapter()
+        TableViewAdapter(requireActivity())
     }
 
     override fun onViewCreate() {
@@ -55,5 +55,4 @@ class UsersFragment : BaseFragment<FragmentUsersBinding>(FragmentUsersBinding::i
     private fun send() {
         viewModel.getUserList(page = 1)
     }
-
 }

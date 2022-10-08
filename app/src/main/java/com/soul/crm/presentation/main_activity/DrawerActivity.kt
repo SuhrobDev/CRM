@@ -1,8 +1,10 @@
 package com.soul.crm.presentation.main_activity
 
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.text.Html
 import android.view.Menu
+import androidx.appcompat.app.ActionBarDrawerToggle
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
@@ -35,10 +37,16 @@ class DrawerActivity : AppCompatActivity() {
         val navView: NavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_content_drawer)
 
+        supportActionBar?.apply {
+            setHomeButtonEnabled(true)
+            setDisplayHomeAsUpEnabled(true)
+            setHomeAsUpIndicator(R.drawable.menu_icon_white)
+        }
 //        supportActionBar?.title = Html.fromHtml("<font color = \"red\">"+getString(R.string.app_name))
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.dashBoardFragment,
+                R.id.signUpFragment,
                 R.id.teachersFragment,
                 R.id.studentsFragment,
                 R.id.groupsFragment,
