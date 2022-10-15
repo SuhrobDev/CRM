@@ -25,11 +25,9 @@ object NetworkModule {
         return Retrofit.Builder().apply {
             baseUrl(Constants.BASE_URL)
             client(OkHttpClient.Builder().addNetworkInterceptor(httpLoggingInterceptor)
-                .connectTimeout(60, TimeUnit.SECONDS)
-                .readTimeout(60, TimeUnit.SECONDS)
-                .writeTimeout(60, TimeUnit.SECONDS)
                 .addInterceptor { chain ->
                     val request = chain.request()
+//                    request.newBuilder().header("Content-Type", "application/json")
                     val newRequest = if (sharedPref.getToken().isNullOrEmpty())
                         request.newBuilder()
                     else request.newBuilder()

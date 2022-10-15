@@ -111,8 +111,8 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(FragmentSignUpBinding
             }
 
             signUp.setOnClickListener {
-//                Toast.makeText(requireContext(), "click", Toast.LENGTH_SHORT).show()
-                viewModel.signUp(name = name.text.toString().trim(), lastname = lastname.text.toString().trim(), password = password.text.toString().trim(), phoneNumber = phone.text.toString().trim(), image = null, gender = "male")
+                Toast.makeText(requireContext(), "${name.text.toString().trim()} lastname = ${lastname.text.toString().trim()} password = ${password.text.toString().trim()} phoneNumber =${phone.text.toString().trim()} gender = \"FAMALE\"", Toast.LENGTH_SHORT).show()
+                viewModel.signUp(name = name.text.toString().trim(), lastname = lastname.text.toString().trim(), password = password.text.toString().trim(), phoneNumber = phone.text.toString().trim(), gender = "MALE")
             }
         }
     }

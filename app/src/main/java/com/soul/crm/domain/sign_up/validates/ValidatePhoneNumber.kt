@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 class ValidatePhoneNumber @Inject constructor(){
     fun validatePhoneNumber(phoneNumber: String): CheckResult {
-        if (phoneNumber.length < 7) {
+        if (phoneNumber.length < 9) {
             return CheckResult(error = "Number is not correct", check = false)
         }
         if (!phoneNumber.isDigitsOnly()) {

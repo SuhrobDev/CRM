@@ -47,7 +47,7 @@
             app:helperText="Required"
             app:helperTextTextColor="#F44336"
             app:startIconDrawable="@drawable/ic_person"
-            app:startIconTint="@color/drawer_icon_bg">
+            app:startIconTint="@color/black">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/name"
@@ -69,7 +69,7 @@
             app:helperText="Required"
             app:helperTextTextColor="#F44336"
             app:startIconDrawable="@drawable/ic_person"
-            app:startIconTint="@color/drawer_icon_bg">
+            app:startIconTint="@color/black">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/lastname"
@@ -88,11 +88,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/phone_number"
+            app:counterEnabled="true"
+            app:counterMaxLength="9"
             app:helperText="Required"
             app:prefixText="+998"
             app:helperTextTextColor="#F44336"
             app:startIconDrawable="@drawable/ic_phone_android"
-            app:startIconTint="@color/drawer_icon_bg">
+            app:startIconTint="@color/black">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/phone"
@@ -118,7 +120,7 @@
             app:helperText="Required"
             app:helperTextTextColor="#F44336"
             app:startIconDrawable="@drawable/ic_lock"
-            app:startIconTint="@color/drawer_icon_bg">
+            app:startIconTint="@color/black">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/password"

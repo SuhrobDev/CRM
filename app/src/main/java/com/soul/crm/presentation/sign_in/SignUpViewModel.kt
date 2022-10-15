@@ -50,12 +50,12 @@ class SignUpViewModel @Inject constructor(
         phoneNumber: String,
         password: String,
         image: String? = null,
-        gender: String? = null,
+        gender: String
     ) {
         viewModelScope.launch {
             if (validateName.validateName(name).check &&
                 validateLastName.validateLastname(lastname).check &&
-//                !validateGender.validateGender(gender).check &&
+                !validateGender.validateGender(gender).check &&
                 validatePhoneNumber.validatePhoneNumber(phoneNumber).check &&
                 validatePassword.validatePassword(password).check
             ) {
