@@ -101,7 +101,7 @@ interface ApiService {
     ): Response<PeoplePagination>
 
     /**         Sign Up         */
-    @POST("register/")
+    @POST("register")
     suspend fun signUp(
         @Body signUpRequest: SignUpRequest,
     ): Response<SignUpResponse>

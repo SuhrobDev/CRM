@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="drawer_icon_bg">#B2B2B2</color>
     <color name="background">#F5F5F5</color>
+    <color name="custom_color">#0B1029</color>
 </resources>
